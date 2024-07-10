@@ -27,6 +27,7 @@ const ol = select('ol');
 listen(document, 'DOMContentLoaded', displayItems);
 
 function displayItems() {
+    ol.innerHTML = '';
     shoppingList.forEach(createAListItem)
 }
 
@@ -41,8 +42,19 @@ listen(form, 'submit', addItem);
 
 function addItem(event){
     event.preventDefault();
-  console.dir(event.target[0].value);
+   event.target.reset();
+   displayItems();
+  console.log(shoppingList);
 }
+const deleteButton = select('.delete');
+listen(deleteButton, 'click', clearList);
+
+
+function clearList() {
+    shoppingList.length = 0;
+    displayItems()
+}
+
 
 
 
